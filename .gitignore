@@ -1,0 +1,10 @@
+# .gitignore
+
+# 대용량 PDF 데이터 폴더만 제외합니다.
+pdf_data/
+
+# 파이썬 가상환경 및 시스템 파일은 제외합니다.
+venv/
+.venv/
+__pycache__/
+.DS_Store
