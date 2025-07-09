@@ -7,3 +7,4 @@ pandas
 pypdf
 cryptography
 sentence-transformers
+langchain-community
