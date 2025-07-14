@@ -39,9 +39,14 @@ st.title("🏺 무령왕릉 유물 정보 챗봇 '공백이'")
 
 vectordb_csv, vectordb_pdf = load_models_and_db()
 
-if not vectordb_csv:
-    st.error("핵심 지식 데이터베이스(`faiss_index_csv`)를 찾을 수 없습니다.")
-else:
+if not vectordb_csv and not vectordb_pdf:
+    st.error("데이터베이스를 찾을 수 없습니다. `create_database.py`를 실행하여 데이터베이스를 생성해주세요.")
+elif not vectordb_csv:
+    st.warning("핵심 지식 데이터베이스(`faiss_index_csv`)를 찾을 수 없습니다. 유물 정보 검색이 제한될 수 있습니다.")
+elif not vectordb_pdf:
+    st.warning("문헌 데이터베이스(`faiss_index_pdf`)를 찾을 수 없습니다. 문헌 정보 검색이 제한될 수 있습니다.")
+
+if vectordb_csv or vectordb_pdf:
     if "messages" not in st.session_state:
         st.session_state.messages = []
 

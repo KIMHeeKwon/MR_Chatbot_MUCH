@@ -1,7 +1,8 @@
-# os.environ['GOOGLE_API_KEY'] = 'AIzaSyBhK4Vg2MsR6G1U0_LEihMv05fpSJ-2kdY' # 여기에 실제 API 키를 넣어주세요.
+# os.environ['GOOGLE_API_KEY'] = 'YOUR_API_KEY' # 여기에 실제 API 키를 넣어주세요.
 
 import os
 import pandas as pd
+import streamlit as st
 from langchain.docstore.document import Document
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -11,12 +12,12 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # --- 1. 환경 설정 ---
-os.environ['GOOGLE_API_KEY'] = 'AIzaSyBhK4Vg2MsR6G1U0_LEihMv05fpSJ-2kdY' # 여기에 실제 API 키를 넣어주세요.
+os.environ['GOOGLE_API_KEY'] = st.secrets["GOOGLE_API_KEY"]
 FAISS_INDEX_PATH = "faiss_index" # 저장될 FAISS 인덱스 파일 경로
 
 # --- 2. 임베딩 모델 준비 ---
 print("한국어 특화 임베딩 모델을 로드합니다...")
-model_name = "jhgan/ko-sbert-nli"
+model_name = "kykim/bert-kor-base"
 embeddings = HuggingFaceEmbeddings(
     model_name=model_name,
     model_kwargs={'device': 'cpu'},
